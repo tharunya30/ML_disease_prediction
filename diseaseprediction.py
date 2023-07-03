@@ -7,17 +7,7 @@ Created on Mon Jul 3 15:07:42 2023
 import pickle
 import streamlit as st
 from streamlit_option_menu import option_menu
-
-import requests
-from streamlit_lottie import st_lottie
-
-def load_lottieurl(url):
-    r= requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json()
-
-lottie_coding = load_lottieurl("https://assets5.lottiefiles.com/packages/lf20_gmspxrnd.json")
+from PIL import Image
 
 #page name and icon
 st.set_page_config(page_title='Disease Prediction', page_icon='🩺')
@@ -44,7 +34,10 @@ if (selected == 'Home'):
     st.subheader("This application allows you to determine the likelihood of illness by making predictions.")
     st.markdown("<h1 style='text-align: center; color: red;'>Please select a disease prediction category from the sidebar.</h1>", unsafe_allow_html=True)
     st.markdown("<h1 style='text-align: center; color: 16F0A1;'>STAY HEALTHY</h1>", unsafe_allow_html=True)
-    st_lottie(lottie_coding,height=500, key ='health')
+    
+    image=Image.open("C:/Users/Dell/OneDrive/Documents/ML webapp/img.jpg")
+    st.image(image,caption='',output_format="auto")
+    
     
 #Parkinson prediction page    
 if (selected=='Parkinson Disease Prediction'):
