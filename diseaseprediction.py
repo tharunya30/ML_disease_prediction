@@ -13,10 +13,10 @@ from PIL import Image
 st.set_page_config(page_title='Disease Prediction', page_icon='🩺')
 
 # loading the saved models
-with open("C:/Users/Dell/OneDrive/Documents/ML webapp/saved models/trained_model_PD.sav", "rb") as file:
+with open("C:/Users/Dell/OneDrive/Documents/ML webapp/trained_model_PD.sav", "rb") as file:
     parkinson_loaded_model = pickle.load(file, encoding="utf-8")
     
-with open("C:/Users/Dell/OneDrive/Documents/ML webapp/saved models/trained_model_BC.sav", "rb") as file:
+with open("C:/Users/Dell/OneDrive/Documents/ML webapp/trained_model_BC.sav", "rb") as file:
     breastcancer_loaded_model = pickle.load(file, encoding="utf-8")
 
 #parkinson_loaded_model = pickle.load(open("C:/Users/Dell/OneDrive/Documents/ML webapp/saved models/trained_model_PD.sav"))
