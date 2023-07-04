@@ -13,23 +13,17 @@ from PIL import Image
 st.set_page_config(page_title='Disease Prediction', page_icon='🩺')
 
 # loading the saved models
-parkinson_loaded_model = pickle.load(open("C:/Users/Dell/OneDrive/Documents/ML webapp/trained_model_PD.sav", 'rb'))
+diabetes_loaded_model = pickle.load(open('C:/Users/Dell/OneDrive/Documents/ML webapp/diabetes_model.sav', 'rb'))
 
-breastcancer_loaded_model = pickle.load(open("C:/Users/Dell/OneDrive/Documents/ML webapp/saved models/trained_model_PD.sav",'rb'))
-#with open("C:/Users/Dell/OneDrive/Documents/ML webapp/trained_model_PD.sav", "rb") as file:
- #   parkinson_loaded_model = pickle.load(file, encoding="utf-8")
-    
-#with open("C:/Users/Dell/OneDrive/Documents/ML webapp/trained_model_BC.sav", "rb") as file:
- #   breastcancer_loaded_model = pickle.load(file, encoding="utf-8")
+breastcancer_loaded_model = pickle.load(open('C:/Users/Dell/OneDrive/Documents/ML webapp/trained_model_BC.sav', 'rb'))
 
-#parkinson_loaded_model = pickle.load(open("C:/Users/Dell/OneDrive/Documents/ML webapp/saved models/trained_model_PD.sav"))
-
+parkinsons_loaded_model = pickle.load(open('C:/Users/Dell/OneDrive/Documents/ML webapp/trained_model_PD.sav', 'rb'))
 
 # sidebar for navigation
 with st.sidebar:
     selected = option_menu('DISEASE PREDICTION SYSTEM ',
-                           ['Home','Parkinson Disease Prediction','Breast Cancer Prediction'],
-                           icons=['house', 'thermometer-low', 'heart-pulse'],
+                           ['Home','Diabetes Prediction','Parkinson Disease Prediction','Breast Cancer Prediction'],
+                           icons=['house','thermometer-low', 'person','heart-pulse'],
                            default_index=0)
 #home page
 if (selected == 'Home'):
@@ -41,6 +35,56 @@ if (selected == 'Home'):
     image=Image.open("C:/Users/Dell/OneDrive/Documents/ML webapp/img.jpg")
     st.image(image,caption='',output_format="auto")
     
+     
+# Diabetes Prediction Page
+if (selected == 'Diabetes Prediction'):
+    
+    # page title
+    st.title('Diabetes Prediction using ML')
+    st.subheader('Fill in the appropriate diagnosed values and press the predict button.')
+    
+    # getting the input data from the user
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        Pregnancies = st.text_input('Number of Pregnancies')
+        
+    with col2:
+        Glucose = st.text_input('Glucose Level')
+    
+    with col3:
+        BloodPressure = st.text_input('Blood Pressure value')
+    
+    with col1:
+        SkinThickness = st.text_input('Skin Thickness value')
+    
+    with col2:
+        Insulin = st.text_input('Insulin Level')
+    
+    with col3:
+        BMI = st.text_input('BMI value')
+    
+    with col1:
+        DiabetesPedigreeFunction = st.text_input('Diabetes Pedigree Function value')
+    
+    with col2:
+        Age = st.text_input('Age of the Person')
+    
+    
+    # code for Prediction
+    diab_diagnosis = ''
+    
+    # creating a button for Prediction
+    
+    if st.button('Diabetes Test Result'):
+        diab_prediction = diabetes_loaded_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
+        
+        if (diab_prediction[0] == 1):
+          diab_diagnosis = 'The person is diabetic'
+        else:
+          diab_diagnosis = 'The person is not diabetic'
+        
+    st.success(diab_diagnosis)   
     
 #Parkinson prediction page    
 if (selected=='Parkinson Disease Prediction'):
@@ -120,7 +164,7 @@ if (selected=='Parkinson Disease Prediction'):
 
     # creating a button for Prediction
     if st.button("Parkinson's Test Result"):
-        PD_prediction = parkinson_loaded_model.predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP,
+        PD_prediction = parkinsons_loaded_model.predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP,
                                                   Shimmer, Shimmer_dB, APQ3, APQ5, APQ, DDA, NHR, HNR,
                                                   RPDE, DFA, spread1, spread2, D2, PPE]])
 
@@ -199,4 +243,3 @@ if (selected == 'Breast Cancer Prediction'):
                 breast_cancer_diagnosis = 'The Breast Cancer is Benign'
 
         st.success(breast_cancer_diagnosis)
-
