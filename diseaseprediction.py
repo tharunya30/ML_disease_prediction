@@ -13,11 +13,11 @@ from PIL import Image
 st.set_page_config(page_title='Disease Prediction', page_icon='🩺')
 
 # loading the saved models
-diabetes_loaded_model = pickle.load(open('C:/Users/Dell/OneDrive/Documents/ML webapp/diabetes_model.sav', 'rb'))
+diabetes_loaded_model = pickle.load(open('C:/Users/Dell/OneDrive/Documents/ML webapp/diabetes_model.sav','rb'))
 
-breastcancer_loaded_model = pickle.load(open('C:/Users/Dell/OneDrive/Documents/ML webapp/trained_model_BC.sav', 'rb'))
+breastcancer_loaded_model = pickle.load(open('C:/Users/Dell/OneDrive/Documents/ML webapp/trained_model_BC.sav','rb'))
 
-parkinsons_loaded_model = pickle.load(open('C:/Users/Dell/OneDrive/Documents/ML webapp/trained_model_PD.sav', 'rb'))
+parkinsons_loaded_model = pickle.load(open('C:/Users/Dell/OneDrive/Documents/ML webapp/trained_model_PD.sav','rb'))
 
 # sidebar for navigation
 with st.sidebar:
@@ -181,47 +181,48 @@ if (selected == 'Breast Cancer Prediction'):
     # page title
     st.title('Breast Cancer Prediction using ML')
     st.subheader('Fill in the appropriate diagnosed values and press the predict button.')
-    col1, col2, col3, col4, col5= st.columns(5)
+    col1, col2, col3, col4, col5, col6= st.columns(6)
 
     with col1:
         radius_mean = st.text_input('Mean radius of tumor')
-        texture_mean = st.text_input('Mean value of texture')
-        perimeter_mean = st.text_input('Mean perimeter of tumor')
-        area_mean = st.text_input('Mean area of tumor')
-        smoothness_mean = st.text_input('Mean smoothness of tumor')
-        compactness_mean = st.text_input('Mean compactness of tumor')
-
-    with col2:
-        
         concavity_mean = st.text_input('Mean concavity of tumor')
+        perimeter_se = st.text_input('Standard error of perimeter')
+        symmetry_se = st.text_input('Standard symmetry')
+        smoothness_worst = st.text_input('worseness of smoothnes')
+        
+    with col2:
+        texture_mean = st.text_input('Mean value of texture')
         concave_points_mean = st.text_input('Mean concave points of tumor')
-        symmetry_mean = st.text_input('Mean symmetry of tumor')
-        fractal_dimension_mean = st.text_input('Mean fractal dimension of tumor')
-        radius_se = st.text_input('Standard error of radius')
-        texture_se = st.text_input('Standard error of texture')
+        area_se = st.text_input('Standard error of area')
+        fractal_dimension_se = st.text_input('Standard fractional dimension')
+        compactness_worst = st.text_input('worseness of compactness')
 
     with col3:
-        perimeter_se = st.text_input('Standard error of perimeter')
-        area_se = st.text_input('Standard error of area')
+        perimeter_mean = st.text_input('Mean perimeter of tumor')
+        symmetry_mean = st.text_input('Mean symmetry of tumor')
         smoothness_se = st.text_input('Standard error of smoothness')
-        compactness_se = st.text_input('Standard error of compactness')
-        concavity_se = st.text_input('Standard error of concavity')
-        concave_points_se = st.text_input('Standard error of concave points')
-    
-    with  col4:
-        symmetry_se = st.text_input('Standard symmetry')
-        fractal_dimension_se = st.text_input('Standard fractional dimension')
         radius_worst = st.text_input('worseness of radius')
-        texture_worst = st.text_input('worseness of texture')
-        perimeter_worst = st.text_input('worseness of perimeter')
-        area_worst = st.text_input('worseness of area')
-        
-    with col5:
-        smoothness_worst = st.text_input('worseness of smoothnes')
-        compactness_worst = st.text_input('worseness of compactness')
         concavity_worst = st.text_input('worseness of concavity')
+          
+    with  col4:
+        area_mean = st.text_input('Mean area of tumor')
+        fractal_dimension_mean = st.text_input('Mean fractal dimension of tumor')
+        compactness_se = st.text_input('Standard error of compactness')
+        texture_worst = st.text_input('worseness of texture')
         concave_points_worst = st.text_input('worseness of concave points')
+          
+    with col5:
+        smoothness_mean = st.text_input('Mean smoothness of tumor')
+        radius_se = st.text_input('Standard error of radius')
+        concavity_se = st.text_input('Standard error of concavity')
+        perimeter_worst = st.text_input('worseness of perimeter')
         symmetry_worst = st.text_input('worseness of symmetry')
+        
+    with col6:
+        compactness_mean = st.text_input('Mean compactness of tumor')
+        texture_se = st.text_input('Standard error of texture')
+        concave_points_se = st.text_input('Standard error of concave points')
+        area_worst = st.text_input('worseness of area')
         fractional_worst = st.text_input('worseness of fractional')
         
         
