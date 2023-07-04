@@ -13,11 +13,11 @@ from PIL import Image
 st.set_page_config(page_title='Disease Prediction', page_icon='🩺')
 
 # loading the saved models
-diabetes_loaded_model = pickle.load(open('C:/Users/Dell/OneDrive/Documents/ML webapp/diabetes_model.sav','rb'))
+diabetes_loaded_model = pickle.load(open('diabetes_model.sav','rb'))
 
-breastcancer_loaded_model = pickle.load(open('C:/Users/Dell/OneDrive/Documents/ML webapp/trained_model_BC.sav','rb'))
+breastcancer_loaded_model = pickle.load(open('trained_model_BC.sav','rb'))
 
-parkinsons_loaded_model = pickle.load(open('C:/Users/Dell/OneDrive/Documents/ML webapp/trained_model_PD.sav','rb'))
+parkinsons_loaded_model = pickle.load(open('trained_model_PD.sav','rb'))
 
 # sidebar for navigation
 with st.sidebar:
@@ -32,7 +32,7 @@ if (selected == 'Home'):
     st.markdown("<h1 style='text-align: center; color: red;'>Please select a disease prediction category from the sidebar.</h1>", unsafe_allow_html=True)
     st.markdown("<h1 style='text-align: center; color: 16F0A1;'>STAY HEALTHY</h1>", unsafe_allow_html=True)
     
-    image=Image.open("C:/Users/Dell/OneDrive/Documents/ML webapp/img.jpg")
+    image=Image.open("img.jpg")
     st.image(image,caption='',output_format="auto")
     
      
